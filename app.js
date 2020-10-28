@@ -1,15 +1,7 @@
 // it's good practice to group require statements by source: npm packages, personal modules and core library modules
 const inquirer = require('inquirer');
-// const fs = require('fs');
-// const generatePage = require('./src/page-template.js');
-
-// const pageHTML = generatePage(name, github);
-
-// fs.writeFile('./index.html', pageHTML, err => {
-//     if (err) throw err;
-
-//     console.log('Portfolio complete! Check out index.html to see the output!')
-// });
+const fs = require('fs');
+const generatePage = require('./src/page-template.js');
 
 const promptUser = () => {
     return inquirer.prompt([
@@ -74,7 +66,7 @@ Add a New Project
         .prompt([
             {
                 type: 'input',
-                name: 'name',
+                name: 'title',
                 message: 'What is the name of your project? (Required)',
                 validate: nameInput => {
                     if (nameInput) {
@@ -140,8 +132,33 @@ Add a New Project
         });
 };
 
-promptUser()
-    .then(promptProject)
-    .then(portfolioData => {
-        console.log(portfolioData);
-    });
+const mockData = {
+    name: 'Sara',
+    github: 'smkrizan',
+    confirmAbout: true,
+    about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada, tellus eget placerat ultrices.',
+    projects: [
+        {
+            title: 'TallyMax',
+            description: 'a 2-5 letter coupled word and image generator designed to build word-game prowess.',
+            languages: ['JavaScript', 'HTML', 'CSS', 'jQuery'],
+            link: 'jgrossh2.github.io/word-generator/',
+            feature: true,
+            confirmAddProject: false
+        }
+    ]
+};
+
+const pageHTML = generatePage(mockData);
+
+// promptUser()
+//     .then(promptProject)
+//     .then(portfolioData => {
+//         const pageHTML = generatePage(portfolioData);
+
+//         // fs.writeFile('./index.html', pageHTML, err => {
+//         //     if (err) throw new Error(err);
+
+//         //     console.log('Page created! Check out index.html in this directory to see it!')
+//         // });
+//     });
