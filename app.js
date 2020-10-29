@@ -133,8 +133,8 @@ Add a New Project
 };
 
 const mockData = {
-    name: 'Sara',
-    github: 'smkrizan',
+    name: 'Sara Krizan',
+    github: 'SMKrizan',
     confirmAbout: true,
     about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce malesuada, tellus eget placerat ultrices.',
     projects: [
@@ -142,7 +142,7 @@ const mockData = {
             title: 'TallyMax',
             description: 'a 2-5 letter coupled word and image generator designed to build word-game prowess.',
             languages: ['JavaScript', 'HTML', 'CSS', 'jQuery'],
-            link: 'jgrossh2.github.io/word-generator/',
+            link: 'https://jgrossh2.github.io/word-generator',
             feature: true,
             confirmAddProject: false
         }
@@ -151,14 +151,15 @@ const mockData = {
 
 const pageHTML = generatePage(mockData);
 
-promptUser()
-    .then(promptProject)
-    .then(portfolioData => {
-        const pageHTML = generatePage(portfolioData);
+// comment out the following 4 lines + final closure line in order to use dummy data
+// promptUser()
+//     .then(promptProject)
+//     .then(portfolioData => {
+        // const pageHTML = generatePage(portfolioData);
 
         fs.writeFile('./index.html', pageHTML, err => {
             if (err) throw new Error(err);
 
             console.log('Page created! Check out index.html in this directory to see it!')
         });
-    });
+    // });
