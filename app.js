@@ -94,7 +94,7 @@ Add a New Project
                 type: 'checkbox',
                 name: 'languages',
                 message: 'What did you build this project with? (Check all that apply)',
-                choices: ['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Bootstrap', 'Node']
+                choices: ['JavaScript', 'HTML', 'CSS', 'ES6', 'jQuery', 'Node']
             },
             {
                 type: 'input',
@@ -140,12 +140,30 @@ const mockData = {
     projects: [
         {
             title: 'TallyMax',
-            description: 'a 2-5 letter coupled word and image generator designed to build word-game prowess.',
+            description: 'A 2-5 letter coupled word and image generator designed to build word-game prowess.',
             languages: ['JavaScript', 'HTML', 'CSS', 'jQuery'],
             link: 'https://jgrossh2.github.io/word-generator',
             feature: true,
+            confirmAddProject: true
+        },
+        {
+            title: 'WeatherView',
+            description: 'Find the current weather conditions and 5-day forecast in a city of your choice.',
+            languages: ['JavaScript', 'HTML', 'CSS'],
+            link: 'https://SMKrizan.github.io/WeatherView',
+            feature: true,
+            confirmAddProject: true
+        },
+        {
+            title: 'Run-Buddy',
+            description: 'A webpage designed to offer personal-training services.',
+            languages: ['HTML', 'CSS'],
+            link: 'https://SMKrizan.github.io/run-buddy',
+            feature: false,
             confirmAddProject: false
         }
+
+
     ]
 };
 
