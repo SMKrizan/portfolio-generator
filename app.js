@@ -54,13 +54,14 @@ const promptUser = () => {
     ]);
 };
 
+// captures data returned from 'promptUser' function and calls itself recursively for as many projects as the user wants to add; each project is pushed into an array; the final array is returned to the next step asynchronously
 const promptProject = portfolioData => {
     console.log(`
 =================
 Add a New Project
 =================
 `);
-    // If there's no 'projects' array property, create one
+    // If this the the first project being entered, an array for holding 'project' data is created. Otherwise, added projects will be added to existing array property.
     if (!portfolioData.projects) {
         portfolioData.projects = [];
     }
@@ -124,6 +125,7 @@ Add a New Project
                 default: false
             },
         ])
+        // the newly added project data is pushed to the 'projectData' array and the final data set is returned to the 'promptUser' function as 'portfolioData'
         .then(projectData => {
             portfolioData.projects.push(projectData)
             if (projectData.confirmAddProject) {
@@ -172,19 +174,23 @@ const mockData = {
 
 const pageHTML = generatePage(mockData);
 
-// comment out the following 4 lines + final closure line in order to use dummy data
+// promptUser is called to accept the new data array of projects
 promptUser()
     .then(promptProject)
+    // this function's output, 'portfolioData', is sent to the 'generatePage' function...
     .then(portfolioData => {
         return generatePage(portfolioData);
     })
+    // ...which will return an HTML file, 'pageHTML', within which the HTML template code will be written.
     .then(pageHTML => {
         return writeFile(pageHTML);
     })
+    // 'pageHTML' is then passed into the 'writeFile' function, which returns a Promise to the 'copyFile' function.
     .then(writeFileResponse => {
         console.log(writeFileResponse);
         return copyFile();
     })
+    // the 'writeFileResponse' object provided by the execution of 'resolve()' within the 'writeFile' function is logged and returned to the 'copyFile' function which tells us whether the CSS file was copied successfully.
     .then(copyFileResponse => {
         console.log(copyFileResponse);
     })
