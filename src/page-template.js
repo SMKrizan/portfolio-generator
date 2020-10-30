@@ -96,11 +96,6 @@ module.exports = templateData => {
             ${generateProjects(projects)}
         </main>
 
-        <section class="my-3" id="about">
-            <h2 class="text-dark bg-primary p-2 display-inline-block">About Me</h2>
-            <p>${about}</p>
-        </section>
-
         <footer class="container text-center py-3">
             <h3 class="text-dark">&copy; ${new Date().getFullYear()} by ${header.name}</h3>
         </footer>
